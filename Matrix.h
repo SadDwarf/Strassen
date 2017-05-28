@@ -11,7 +11,7 @@ private:
 /**
  *
  * @param quarter number of quarter for division for recursion
- * @return return quarter of input matrix
+ * @return return quarter of argument matrix
  */
     Matrix quarter(int quarter) const {
         Matrix c(size() / 2);
