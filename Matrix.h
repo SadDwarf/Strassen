@@ -8,7 +8,11 @@ class Matrix {
 private:
     std::vector<Num> array;
     size_t m_size;
-
+/**
+ *
+ * @param quarter number of quarter for division for recursion
+ * @return return quarter of input matrix
+ */
     Matrix quarter(int quarter) const {
         Matrix c(size() / 2);
         int i, j;
@@ -29,7 +33,11 @@ private:
                 c(l, k) = (*this)(i + l, j + k);
         return c;
     }
-
+/**
+ * n^3 multiplication without strassen algorithm
+ * @param b
+ * @return
+ */
     Matrix simple_multiplication(const Matrix& b) const {
         Matrix c(size());
         for (size_t i = 0; i < size(); ++i)
@@ -38,12 +46,20 @@ private:
                     c(i, j)+= (*this)(k, j) * b(i, k);
         return c;
     }
-
+/**
+ * wrong sizes check for multiplication
+ * @param b
+ */
     void check_size(const Matrix& b) const {
         if (size() != b.size())
             throw std::invalid_argument("this->size = " + std::to_string(size()) +
                                         " other.size = " + std::to_string(b.size()));
     }
+/**
+* bad indexes check
+* @param i
+* @param j
+*/
     void check_range(size_t i, size_t j) const {
         if (m_size <= i || m_size <= j)
             throw std::out_of_range("size = " + std::to_string(m_size) +
@@ -60,7 +76,9 @@ public:
             m_size = std::pow(2, int(k));
         array.resize(m_size * m_size);
     }
-
+/**
+ * constructor to unite 4 matrixes in bigger one
+ */
     Matrix(const Matrix& a, const Matrix& b, const Matrix& c, const Matrix& d) {
         m_size = a.size() * 2;
         array.resize(m_size * m_size);

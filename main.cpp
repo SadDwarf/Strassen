@@ -2,18 +2,23 @@
 #include <vector>
 #include <exception>
 #include <iostream>
+#include <fstream>
 
 #include "Matrix.h"
 
 int main() {
+    std::ofstream fout("output");
+    std::ifstream fin("input");
     size_t n;
-    std::cin >> n;
+    fin >> n;
     Matrix<int> a(n);
     Matrix<int> b(n);
     std::cin >> a >> b;
 
-    std::cout << a << std::endl << b << std::endl;
-
+    fout << a << std::endl << b << std::endl;
+    
     Matrix<int> c = a * b;
-    std::cout << c;
+    fout << c;
+    fin.close();
+    fout.close();
 }
